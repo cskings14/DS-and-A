@@ -22,7 +22,7 @@ class Graph:
             if start in self.graph_dict:
                 self.graph_dict[start].append(end)
             else:
-                self.graph_dict[start] = [end]
+                self.graph_dict[start] = [end] # note that they should already be in a dictionary
         
     def get_paths(self, start, end, path=[]):
         path = path + [start]
