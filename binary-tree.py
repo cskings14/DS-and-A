@@ -15,8 +15,10 @@ The two main traversal techniques are Breadth First Search and Depth First Searc
                 23
 
 in order traversal: [7, 12, 14, 15, 20, 23, 27, 88] Goes from lowest to highest node value starting at the lowest value node.
-pre order traversal: [15, 12, 7, 14, 27, 20, 23, 88] Goes from left to right starting at the root node going left. (depth first traversal)
+pre order traversal: [15, 12, 7, 14, 27, 20, 23, 88] Goes from left to right starting at the root node going left. 
+^THIS IS THE SAME AS DEPTH FIRST^
 post order traversal: [7, 14, 12, 23, 20, 88, 27, 15] Goes from left sub tree to right sub tree (from left to right) and ends with the root node.
+Breadth first traversal: [15, 12, 27, 7, 14, 20, 88, 23] Goes from left to right starting up and going down.
 '''
 
 class BST:
@@ -54,14 +56,30 @@ class BST:
         
         return elements
 
-    def preorder_traversal(self, root): # we will use a list as a stack
+    def bfs(self, root):
+        if root is None:
+            return
+        queue = [root]
+
+        while len(queue) > 0:
+            cur_node = queue.pop(0)
+
+            if cur_node.left is not None:
+                queue.append(cur_node.left)
+
+            if cur_node.right is not None:
+                queue.append(cur_node.right)
+
+            # end
+
+    def preorder_traversal(self, root): # we need a root to use recursion properly
         # if root is None,return
         if root is None:
             return
         # print the current node
         print(root.data, end=", ")
         # traverse left subtree
-        self.preorder_traversal(root.left)
+        self.preorder_traversal(root.left) # 
 
         # traverse right subtree
         self.preorder_traversal(root.right)
