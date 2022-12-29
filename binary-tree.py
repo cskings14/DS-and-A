@@ -15,7 +15,7 @@ The two main traversal techniques are Breadth First Search and Depth First Searc
                 23
 
 in order traversal: [7, 12, 14, 15, 20, 23, 27, 88] Goes from lowest to highest node value starting at the lowest value node.
-pre order traversal: [15, 12, 7, 14, 27, 20, 23, 88] Goes from left to right starting at the root node going left.
+pre order traversal: [15, 12, 7, 14, 27, 20, 23, 88] Goes from left to right starting at the root node going left. (depth first traversal)
 post order traversal: [7, 14, 12, 23, 20, 88, 27, 15] Goes from left sub tree to right sub tree (from left to right) and ends with the root node.
 '''
 
@@ -53,7 +53,18 @@ class BST:
             elements += self.right.inorder_traversal() # this will find the highest right element
         
         return elements
-        
+
+    def preorder_traversal(self, root): # we will use a list as a stack
+        # if root is None,return
+        if root is None:
+            return
+        # print the current node
+        print(root.data, end=", ")
+        # traverse left subtree
+        self.preorder_traversal(root.left)
+
+        # traverse right subtree
+        self.preorder_traversal(root.right)
 
     def build_tree(elements):
         root = BST(elements[0]) # sets the first value to the root node
@@ -114,3 +125,9 @@ numbers = [17, 4, 4, 1, 20, 9, 23, 18, 34, 18, 14]
 tree = BST.build_tree(numbers)
 print(tree.inorder_traversal())
 print(tree.search(17))
+
+
+
+nums = [15, 7, 12, 14, 20, 23, 27, 88]
+tre = BST.build_tree(nums)
+print(tre.preorder_traversal(tre))
